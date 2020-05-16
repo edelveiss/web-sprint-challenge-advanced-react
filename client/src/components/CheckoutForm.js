@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import { useForm } from "../hooks/useForm";
+import { useShowMessage } from "../hooks/useShowMessage";
 const initialValue = {
   firstName: "",
   lastName: "",
@@ -14,16 +15,40 @@ const initialValue = {
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-  const [values, setValues] = useState(initialValue);
+  //const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  //const [values, setValues] = useState(initialValue);
 
-  const handleChanges = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  };
+  const [showSuccessMessage, setShowSuccessMessage] = useShowMessage(
+    "submitted",
+    false
+  );
+  const [values, handleChanges, clearForm, handleSubmit] = useForm(
+    initialValue,
+    "Checkout-form",
+    (e) => {
+      console.log("CheckoutForm values:", values);
+      // alert(`${values.firstName}
+      //   ${values.lastName}
+      //   ${values.address}
+      //   ${values.city}
+      //   ${values.state}
+      //   ${values.zip}
+      //   `);
+      setShowSuccessMessage(true);
+    }
+  );
 
-  const handleSubmit = (e) => {
+  // const handleChanges = (e) => {
+  //   setValues({ ...values, [e.target.name]: e.target.value });
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setShowSuccessMessage(true);
+  // };
+  const handleClearForm = (e) => {
     e.preventDefault();
-    setShowSuccessMessage(true);
+    clearForm();
   };
 
   return (
