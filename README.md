@@ -30,13 +30,45 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 1. Explain how to build stateful class components.
 
+-Declare your class component by extending the React.Component parent class. Ex:
+class MyComponent extends React.Component {}.
+
+-Use the constructor function to set up some state, because we’re calling extends, we also need to call super():
+constructor() {
+super();
+this.state = {};
+}
+
+- We need to render some sort of UI to the DOM. We do this by calling the life-cycle method render.
+  render(){};
+
 2. Describe the different phases of the component lifecycle.
 
-3. Demonstrate an understanding of class component lifecycle methods.
+The three React lifestyle phases are:
+
+1. Birth/Mounting when the component is being built out from the ground up, render method is invoked, and componentDidMount gets called as well.
+2. Growth/Updating, where we are updating component data by setState,which forces a call to render.
+3. Death/Unmounting removes the component from the screen, componentWillUnmount is called and can be used for any clean up you may need to do.
+
+4. Demonstrate an understanding of class component lifecycle methods.
+
+These methods are:
+
+-constructor incites state data for the initial render.
+-render is a method that tells react what will be mounted to the screen.
+-componentDidMount is called after all the elements of the page is rendered correctly.
+-componentDidUpdate is called when a component got updated. This might happen if new props have been provided by a parent component or an internal state has been changed.
+-componentWillUnmount is the last function to be called immediately before the component is removed from the DOM.
 
 4. Define stateful logic.
 
+Stateful logic is logic that is built into a component. It can be a function that handles a click event or maybe a function that sets toggle state, or even a function that formats data before it gets displayed. Usually, this kind of logic deals with state in the component. Thus the moniker “stateful logic.”
+
 5. Describe how to test a React component with React Testing Library.
+
+1) we “arrange” our test by setting up our code such that it can be tested.
+2) we “act” - calling a method or function that returns a result of interest to our test.
+3) we “assert” if our expected return matched the actual return.
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade.
 
