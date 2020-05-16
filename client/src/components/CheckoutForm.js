@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "../hooks/useForm";
-import { useShowMessage } from "../hooks/useShowMessage";
+//import { useShowMessage } from "../hooks/useShowMessage";
 const initialValue = {
   firstName: "",
   lastName: "",
@@ -15,13 +15,13 @@ const initialValue = {
 // and replace the necessary stateful logic from CheckoutForm with the hook
 
 const CheckoutForm = (props) => {
-  //const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   //const [values, setValues] = useState(initialValue);
 
-  const [showSuccessMessage, setShowSuccessMessage] = useShowMessage(
-    "submitted",
-    false
-  );
+  // const [showSuccessMessage, setShowSuccessMessage] = useShowMessage(
+  //   "submitted",
+  //   false
+  // );
   const [values, handleChanges, clearForm, handleSubmit] = useForm(
     initialValue,
     "Checkout-form",
@@ -45,12 +45,13 @@ const CheckoutForm = (props) => {
   // const handleSubmit = (e) => {
   //   e.preventDefault();
   //   setShowSuccessMessage(true);
+  //   //clearForm();
   // };
   const handleClearForm = (e) => {
     e.preventDefault();
     clearForm();
   };
-
+  // console.log("showmessage", showSuccessMessage);
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -91,7 +92,7 @@ const CheckoutForm = (props) => {
           Zip:
           <input name="zip" value={values.zip} onChange={handleChanges} />
         </label>
-        <button>Checkout</button>
+        <button data-testid="checkoutBtn">Checkout</button>
       </form>
 
       {showSuccessMessage && (

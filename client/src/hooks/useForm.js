@@ -20,5 +20,6 @@ export const useForm = (initialState, key, submitLogic) => {
     //clearForm();
   };
 
+  //return [values, handleChanges, clearForm];
   return [values, handleChanges, clearForm, handleSubmit];
 };
